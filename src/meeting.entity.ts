@@ -1,4 +1,11 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+    Column,
+    Entity,
+    JoinTable,
+    ManyToMany,
+    PrimaryGeneratedColumn
+} from 'typeorm';
+import { Employee } from './employee.entity';
 
 @Entity()
 export class Meeting {
@@ -8,6 +15,7 @@ export class Meeting {
     @Column()
     zoomUrl: string;
 
-    @ManyToMany(() => Employee, emp => emp.meetings)
+    @ManyToMany(() => Employee, (emp) => emp.meetings)
+    @JoinTable()
     attendees: Employee[];
 }

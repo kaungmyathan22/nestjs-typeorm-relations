@@ -1,8 +1,6 @@
 import {
     Column,
-    Entity,
-    JoinTable,
-    ManyToOne,
+    Entity, ManyToMany, ManyToOne,
     OneToMany,
     OneToOne,
     PrimaryGeneratedColumn
@@ -33,7 +31,6 @@ export class Employee {
     @OneToMany(() => Task, (task) => task.employee)
     tasks: Task[];
 
-    @OneToMany(() => Meeting, (meeting) => meeting.attendees)
-    @JoinTable()
+    @ManyToMany(() => Meeting, (meeting) => meeting.attendees)
     meetings: Meeting[];
 }
